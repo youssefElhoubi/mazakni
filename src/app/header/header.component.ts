@@ -9,13 +9,6 @@ import { CommonModule } from '@angular/common';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  
-  // Menu Items
-  menuItems = [
-    { label: 'Home', link: '/', active: true },
-    { label: 'About', link: '/about', active: false },
-    { label: 'Concerts', link: '/concerts', active: false },
-  ];
 
   // Slider Logic
   currentSlide = 0;

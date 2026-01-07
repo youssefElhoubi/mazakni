@@ -1,0 +1,39 @@
+<div class="absolute z-[999] w-full pt-[30px]">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-wrap items-center justify-between">
+
+            <div class="w-full sm:w-3/12 md:w-2/12 xl:w-2/12 flex justify-center md:justify-start mb-4 md:mb-0">
+                <div class="logo">
+                    <a href="/">
+                        <img src="assets/images/logo.png" alt="Logo" class="max-w-full h-auto" />
+                    </a>
+                </div>
+            </div>
+
+            <div class="w-full sm:w-9/12 md:w-10/12 xl:w-10/12">
+                <div class="flex justify-center md:justify-end">
+                    <nav class="main-menu">
+                        <ul
+                            class="flex flex-wrap items-center justify-center md:justify-end list-none m-0 p-0 gap-x-2 md:gap-x-1 lg:gap-x-2">
+
+                            <li *ngFor="let item of menuItems">
+                                <a [href]="item.link" [class.bg-brand-cyan]="item.active"
+                                    [class.hover:bg-brand-cyan]="!item.active"
+                                    class="block py-[11px] px-[20px] text-center text-[16px] font-medium text-white uppercase rounded-[17px] transition-all duration-300 hover:rounded-[17px]">
+                                    {{ item.label }}
+                                </a>
+                            </li>
+
+                            <li class="hidden md:block  ">
+                                <a href="#" class="block py-[11px] px-[20px] hover:bg-transparent">
+                                    <img src="assets/images/search_icon.png" alt="Search" />
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
