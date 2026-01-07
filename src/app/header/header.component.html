@@ -1,5 +1,5 @@
 <header>
-    <div class="relative bg-cover bg-no-repeat bg-center min-h-[980px] pb-[50px]"
+    <div class="relative bg-cover bg-no-repeat bg-center min-h-[13em] pb-[50px]"
         style="background-image: url('assets/images/banner2.jpg');">
 
         <div class="absolute z-[999] w-full pt-[30px]">
@@ -28,7 +28,7 @@
                                         </a>
                                     </li>
 
-                                    <li class="hidden md:block">
+                                    <li class="hidden md:block  ">
                                         <a href="#" class="block py-[11px] px-[20px] hover:bg-transparent">
                                             <img src="assets/images/search_icon.png" alt="Search" />
                                         </a>
@@ -78,22 +78,25 @@
                         </div>
                     </div>
 
-                    <div class="hidden md:block">
-                        <button (click)="prevSlide()"
-                            class="absolute left-[28%] md:left-[37%] lg:left-[40%] -bottom-[20%] md:-bottom-[58%] lg:-bottom-[63%] z-[999] opacity-100 cursor-pointer outline-none">
-                            <div
-                                class="w-[70px] h-[70px] bg-[#f9f9f9] text-[#03daee] flex justify-center items-center rounded-[40px] shadow-[0px_0px_7px_-3px_#000] hover:bg-brand-cyan hover:text-white transition-colors">
-                                <i class="fa fa-long-arrow-left text-[20px]" aria-hidden="true"></i>
-                            </div>
-                        </button>
+                    <div class="hidden md:block ">
+                        <div class=" flex justify-center gap-3.5 mt-4">
 
-                        <button (click)="nextSlide()"
-                            class="absolute right-[28%] md:right-[37%] lg:right-[40%] -bottom-[20%] md:-bottom-[58%] lg:-bottom-[63%] z-[999] opacity-100 cursor-pointer outline-none">
-                            <div
-                                class="w-[70px] h-[70px] bg-[#f9f9f9] text-[#03daee] flex justify-center items-center rounded-[40px] shadow-[0px_0px_7px_-3px_#000] hover:bg-brand-cyan hover:text-white transition-colors">
-                                <i class="fa fa-long-arrow-right text-[20px]" aria-hidden="true"></i>
-                            </div>
-                        </button>
+                            <button (click)="prevSlide()"
+                                class="opacity-100 cursor-pointer outline-none">
+                                <div
+                                    class="w-[70px] h-[70px] bg-[#f9f9f9] text-[#03daee] flex justify-center items-center rounded-[40px] shadow-[0px_0px_7px_-3px_#000] hover:bg-brand-cyan hover:text-white transition-colors">
+                                    <i class="fa fa-long-arrow-left text-[20px]" aria-hidden="true"></i>
+                                </div>
+                            </button>
+
+                            <button (click)="nextSlide()"
+                                class="opacity-100 cursor-pointer outline-none">
+                                <div
+                                    class="w-[70px] h-[70px] bg-[#f9f9f9] text-[#03daee] flex justify-center items-center rounded-[40px] shadow-[0px_0px_7px_-3px_#000] hover:bg-brand-cyan hover:text-white transition-colors">
+                                    <i class="fa fa-long-arrow-right text-[20px]" aria-hidden="true"></i>
+                                </div>
+                            </button>
+                        </div>
                     </div>
 
                 </div>
