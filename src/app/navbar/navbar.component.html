@@ -1,4 +1,4 @@
-<div class="absolute z-[999] w-full pt-[30px]">
+<div class="absolute z-999 w-full pt-7.5">
     <div class="container mx-auto px-4">
         <div class="flex flex-wrap items-center justify-between">
 
@@ -19,13 +19,13 @@
                             <li *ngFor="let item of menuItems">
                                 <a [href]="item.link" [class.bg-brand-cyan]="item.active"
                                     [class.hover:bg-brand-cyan]="!item.active"
-                                    class="block py-[11px] px-[20px] text-center text-[16px] font-medium text-white uppercase rounded-[17px] transition-all duration-300 hover:rounded-[17px]">
+                                    class="block py-2.75 px-5 text-center text-[16px] font-medium text-white uppercase rounded-[17px] transition-all duration-300 hover:rounded-[17px]">
                                     {{ item.label }}
                                 </a>
                             </li>
 
                             <li class="hidden md:block  ">
-                                <a href="#" class="block py-[11px] px-[20px] hover:bg-transparent">
+                                <a href="#" class="block py-2.75 px-5 hover:bg-transparent">
                                     <img src="assets/images/search_icon.png" alt="Search" />
                                 </a>
                             </li>
