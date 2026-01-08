@@ -6,7 +6,7 @@ export const routes: Routes = [
         loadComponent:()=> import("../app/home/home.component").then(m=>m.HomeComponent)
     },
     {
-        path:"a",
-        loadComponent:()=> import("../app/music-list/music-list.component").then(m=>m.MusicListComponent)
+        path:"music/:id",
+        loadComponent:()=> import("../app/music-player/music-player.component").then(m=>m.MusicPlayerComponent)
     },
 ];
