@@ -10,6 +10,10 @@ export const routes: Routes = [
         loadComponent:()=> import("../app/music-player/music-player.component").then(m=>m.MusicPlayerComponent)
     },
     {
+        path:"upload",
+        loadComponent:()=> import("../app/upload/upload.component").then(m=>m.UploadComponent)
+    },
+    {
         path:"**",
         loadComponent:()=> import("../app/not-found/not-found.component").then(m=>m.NotFoundComponent)
     },

@@ -12,7 +12,7 @@ export class NavbarComponent {
   // Menu Items
   menuItems = [
     { label: 'Home', link: '/', active: true },
-    { label: 'About', link: '/about', active: false },
+    { label: 'Upload', link: '/upload', active: false },
   ];  
 
 }
