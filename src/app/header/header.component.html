@@ -1,103 +1,54 @@
-<header>
-    <div class="relative bg-cover bg-no-repeat bg-center min-h-[980px] pb-[50px]"
-        style="background-image: url('assets/images/banner2.jpg');">
+<header
+    class="relative w-full h-[45vh] min-h-87.5 bg-cover bg-center bg-no-repeat flex items-center justify-center overflow-hidden"
+    style="background-image: url('assets/images/banner2.jpg');">
 
-        <div class="absolute z-[999] w-full pt-[30px]">
-            <div class="container mx-auto px-4">
-                <div class="flex flex-wrap items-center justify-between">
+    <div class="absolute inset-0 bg-black/30"></div>
 
-                    <div class="w-full sm:w-3/12 md:w-2/12 xl:w-2/12 flex justify-center md:justify-start mb-4 md:mb-0">
-                        <div class="logo">
-                            <a href="/">
-                                <img src="assets/images/logo.png" alt="Logo" class="max-w-full h-auto" />
-                            </a>
-                        </div>
-                    </div>
+    <div class="relative z-10 container mx-auto px-4 flex flex-col items-center justify-center h-full text-center">
 
-                    <div class="w-full sm:w-9/12 md:w-10/12 xl:w-10/12">
-                        <div class="flex justify-center md:justify-end">
-                            <nav class="main-menu">
-                                <ul
-                                    class="flex flex-wrap items-center justify-center md:justify-end list-none m-0 p-0 gap-x-2 md:gap-x-1 lg:gap-x-2">
+        <div class="max-w-4xl w-full animate-fadeIn flex flex-col items-center">
 
-                                    <li *ngFor="let item of menuItems">
-                                        <a [href]="item.link" [class.bg-brand-cyan]="item.active"
-                                            [class.hover:bg-brand-cyan]="!item.active"
-                                            class="block py-[11px] px-[20px] text-center text-[16px] font-medium text-white uppercase rounded-[17px] transition-all duration-300 hover:rounded-[17px]">
-                                            {{ item.label }}
-                                        </a>
-                                    </li>
+            <span class="block text-brand-darkCyan font-bold uppercase tracking-widest text-sm md:text-lg mb-1">
+                {{ slides[currentSlide].subtitle }}
+            </span>
 
-                                    <li class="hidden md:block">
-                                        <a href="#" class="block py-[11px] px-[20px] hover:bg-transparent">
-                                            <img src="assets/images/search_icon.png" alt="Search" />
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
+            <h1 class="text-white font-extrabold uppercase leading-none mb-3
+                       text-[clamp(1.5rem,5vw,3.75rem)]">
+                {{ slides[currentSlide].title }}
+            </h1>
 
-                </div>
+            <p class="hidden sm:block text-white/90 font-light mx-auto max-w-xl mb-5 leading-snug
+                      text-xs md:text-sm line-clamp-2">
+                {{ slides[currentSlide].desc }}
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-3 mb-4">
+                <a href="#" class="bg-white text-black uppercase font-bold rounded-full hover:bg-brand-cyan hover:text-white transition-all duration-300 shadow-sm
+                                   px-5 py-2 text-[10px] md:text-xs tracking-wide">
+                    Music & Entertainment
+                </a>
+                <a href="#" class="bg-white text-black uppercase font-bold rounded-full hover:bg-brand-cyan hover:text-white transition-all duration-300 shadow-sm
+                                   px-5 py-2 text-[10px] md:text-xs tracking-wide">
+                    Buy Tickets
+                </a>
             </div>
         </div>
 
-        <section class="pt-[177px] md:pt-[268px] relative">
-            <div class="container mx-auto px-4">
-                <div class="relative w-full">
-
-                    <div class="text-center relative z-10 transition-opacity duration-500 ease-in-out">
-                        <div class="text-bg mx-auto">
-
-                            <span
-                                class="block text-[46px] md:text-[80px] leading-[50px] md:leading-[80px] text-brand-darkCyan uppercase animate-fadeIn">
-                                {{ slides[currentSlide].subtitle }}
-                            </span>
-
-                            <h1
-                                class="text-white text-[31px] md:text-[76px] lg:text-[100px] leading-[1.1] md:leading-[85px] py-[20px] md:py-[20px] md:pb-[40px] uppercase font-bold animate-fadeIn">
-                                {{ slides[currentSlide].title }}
-                            </h1>
-
-                            <p
-                                class="block text-white text-[17px] leading-[26px] md:leading-[30px] font-normal pb-[35px] md:pb-[50px] max-w-4xl mx-auto animate-fadeIn">
-                                {{ slides[currentSlide].desc }}
-                            </p>
-
-                            <div class="flex flex-wrap justify-center gap-2">
-                                <a href="#"
-                                    class="text-[10px] md:text-[16px] bg-white text-black py-[9px] md:py-[12px] w-full max-w-[132px] md:max-w-[253px] inline-block text-center rounded-[30px] transition-all duration-500 hover:bg-brand-cyan hover:text-white">
-                                    Music & Entertainment
-                                </a>
-                                <a href="#"
-                                    class="text-[10px] md:text-[16px] bg-white text-black py-[9px] md:py-[12px] w-full max-w-[132px] md:max-w-[253px] inline-block text-center rounded-[30px] transition-all duration-500 hover:bg-brand-cyan hover:text-white">
-                                    Buy Tickets
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="hidden md:block">
-                        <button (click)="prevSlide()"
-                            class="absolute left-[28%] md:left-[37%] lg:left-[40%] -bottom-[20%] md:-bottom-[58%] lg:-bottom-[63%] z-[999] opacity-100 cursor-pointer outline-none">
-                            <div
-                                class="w-[70px] h-[70px] bg-[#f9f9f9] text-[#03daee] flex justify-center items-center rounded-[40px] shadow-[0px_0px_7px_-3px_#000] hover:bg-brand-cyan hover:text-white transition-colors">
-                                <i class="fa fa-long-arrow-left text-[20px]" aria-hidden="true"></i>
-                            </div>
-                        </button>
-
-                        <button (click)="nextSlide()"
-                            class="absolute right-[28%] md:right-[37%] lg:right-[40%] -bottom-[20%] md:-bottom-[58%] lg:-bottom-[63%] z-[999] opacity-100 cursor-pointer outline-none">
-                            <div
-                                class="w-[70px] h-[70px] bg-[#f9f9f9] text-[#03daee] flex justify-center items-center rounded-[40px] shadow-[0px_0px_7px_-3px_#000] hover:bg-brand-cyan hover:text-white transition-colors">
-                                <i class="fa fa-long-arrow-right text-[20px]" aria-hidden="true"></i>
-                            </div>
-                        </button>
-                    </div>
-
+        <div class="flex justify-center gap-4 mt-1">
+            <button (click)="prevSlide()" class="group outline-none">
+                <div class="bg-[#f9f9f9]/90 text-[#03daee] rounded-full flex justify-center items-center shadow-sm transition-colors duration-300 group-hover:bg-brand-cyan group-hover:text-white
+                            w-8 h-8 md:w-10 md:h-10">
+                    <i class="fa fa-long-arrow-left text-sm md:text-base" aria-hidden="true"></i>
                 </div>
-            </div>
-        </section>
+            </button>
+
+            <button (click)="nextSlide()" class="group outline-none">
+                <div class="bg-[#f9f9f9]/90 text-[#03daee] rounded-full flex justify-center items-center shadow-sm transition-colors duration-300 group-hover:bg-brand-cyan group-hover:text-white
+                            w-8 h-8 md:w-10 md:h-10">
+                    <i class="fa fa-long-arrow-right text-sm md:text-base" aria-hidden="true"></i>
+                </div>
+            </button>
+        </div>
+
     </div>
 </header>
