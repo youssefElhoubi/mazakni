@@ -9,4 +9,8 @@ export const routes: Routes = [
         path:"music/:id",
         loadComponent:()=> import("../app/music-player/music-player.component").then(m=>m.MusicPlayerComponent)
     },
+    {
+        path:"**",
+        loadComponent:()=> import("../app/not-found/not-found.component").then(m=>m.NotFoundComponent)
+    },
 ];
