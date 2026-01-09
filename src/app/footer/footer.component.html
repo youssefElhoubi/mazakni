@@ -1,19 +1,17 @@
-<div
-    class="fixed bottom-0 left-0 right-0 z-50 bg-neutral-900 border-t border-neutral-800 text-white px-4 py-3 h-24 flex items-center justify-between">
+<div class="fixed bottom-0 left-0 right-0 z-50 bg-neutral-900 border-t border-neutral-800 text-white px-4 py-3 h-24 flex items-center justify-between">
 
     <div class="flex items-center w-1/3 min-w-45">
-        <div
-            class="hidden sm:block h-14 w-14 shadow-lg rounded overflow-hidden mr-4 bg-neutral-800 relative group cursor-pointer">
-            <img src="https://via.placeholder.com/56" alt="Cover"
+        <div class="hidden sm:block h-14 w-14 shadow-lg rounded overflow-hidden mr-4 bg-neutral-800 relative group cursor-pointer">
+            <img [src]="currentMusic.img" alt="Cover"
                 class="object-cover w-full h-full opacity-100 group-hover:opacity-80 transition-opacity">
         </div>
 
         <div class="flex flex-col justify-center">
             <a href="#" class="text-sm font-semibold hover:underline cursor-pointer truncate">
-                New Year Dubstep
+                {{ currentMusic.title }}
             </a>
             <a href="#" class="text-xs text-neutral-400 hover:underline hover:text-white cursor-pointer">
-                Rofa Music Store
+                {{ currentMusic.artist }}
             </a>
         </div>
 
@@ -44,9 +42,15 @@
                 </svg>
             </button>
 
-            <button class="bg-white text-black rounded-full p-2 hover:scale-105 transition transform shadow-md">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 pl-0.5" fill="currentColor" viewBox="0 0 24 24">
+            <button (click)="togglePlay()" 
+                    class="bg-white text-black rounded-full p-2 hover:scale-105 transition transform shadow-md">
+                
+                <svg *ngIf="!isPlaying" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 pl-0.5" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M8 5v14l11-7z" />
+                </svg>
+
+                <svg *ngIf="isPlaying" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
                 </svg>
             </button>
 
@@ -67,37 +71,39 @@
         </div>
 
         <div class="flex items-center w-full gap-2 text-xs text-neutral-400 font-mono">
-            <span>0:00</span>
-            <div class="h-1 bg-neutral-600 rounded-full w-full relative group cursor-pointer">
-                <div class="absolute h-full bg-white rounded-full w-1/3 group-hover:bg-green-500"></div>
-                <div
-                    class="absolute h-3 w-3 bg-white rounded-full top-1/2 -translate-y-1/2 left-1/3 opacity-0 group-hover:opacity-100 shadow">
+            <span>{{ formatTime(currentTime) }}</span>
+            
+            <div (click)="seekTo($event)" class="h-1 bg-neutral-600 rounded-full w-full relative group cursor-pointer flex items-center">
+                <div [style.width.%]="progress" class="absolute h-full bg-white rounded-full group-hover:bg-green-500 transition-all duration-100 ease-linear"></div>
+                
+                <div [style.left.%]="progress"
+                    class="absolute h-3 w-3 bg-white rounded-full -ml-1.5 opacity-0 group-hover:opacity-100 shadow transition-opacity">
                 </div>
             </div>
-            <span>3:45</span>
+
+            <span>{{ formatTime(duration) }}</span>
         </div>
 
     </div>
 
     <div class="flex items-center justify-end w-1/3 min-w-45 gap-2">
-        <button class="text-neutral-400 hover:text-white">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+        <button class="text-neutral-400 hover:text-white" (click)="setVolume($event)"> <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
             </svg>
         </button>
 
-        <div class="w-24 h-1 bg-neutral-600 rounded-full relative cursor-pointer group">
-            <div class="absolute h-full bg-white rounded-full w-1/2 group-hover:bg-green-500"></div>
-            <div
-                class="absolute h-3 w-3 bg-white rounded-full top-1/2 -translate-y-1/2 left-1/2 opacity-0 group-hover:opacity-100 shadow">
+        <div (click)="setVolume($event)" class="w-24 h-1 bg-neutral-600 rounded-full relative cursor-pointer group flex items-center">
+            
+            <div [style.width.%]="volume * 100" class="absolute h-full bg-white rounded-full group-hover:bg-green-500"></div>
+            
+            <div [style.left.%]="volume * 100"
+                class="absolute h-3 w-3 bg-white rounded-full -ml-1.5 opacity-0 group-hover:opacity-100 shadow">
             </div>
         </div>
     </div>
 
-    <audio #audioPlayer hidden>
-        <source src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/9473/new_year_dubstep_minimix.ogg" type="audio/ogg">
-    </audio>
+    <audio #audioPlayer [src]="currentMusic.url" (timeupdate)="onTimeUpdate()" (loadedmetadata)="onLoadedMetadata()" hidden></audio>
 
 </div>
