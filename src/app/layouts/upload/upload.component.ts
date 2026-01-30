@@ -51,7 +51,6 @@ export class UploadComponent {
       alert('Music Uploaded Successfully!');
       // Reset form logic here
     } else {
-      alert('Please fill in the required fields.');
     }
   }
 }

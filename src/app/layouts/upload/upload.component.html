@@ -15,17 +15,27 @@
                 <div class="group">
                     <label class="block text-brand-darkCyan text-xs font-bold uppercase tracking-wider mb-2">Track
                         Name</label>
-                    <input type="text" [(ngModel)]="musicData.name" name="name" placeholder="e.g. Midnight City"
+                    <input type="text" [(ngModel)]="musicData.name" name="name" #nameInput="ngModel" placeholder="e.g. Midnight City"
+                    minlength="4"
                         class="w-full bg-[#0f0f0f] text-white border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan transition-all placeholder-gray-600">
                 </div>
+                @if (nameInput.hasError('minlength')) {
+                    <p class="text-red-500 text-xs mt-2">Track name must be at least 4 characters.</p>
+                }
 
                 <div class="group">
                     <label
                         class="block text-brand-darkCyan text-xs font-bold uppercase tracking-wider mb-2">Description</label>
                     <textarea rows="3" [(ngModel)]="musicData.description" name="description"
+                    #description="ngModel"
+                    minlength="20"
                         placeholder="Tell us about the song..."
                         class="w-full bg-[#0f0f0f] text-white border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan transition-all placeholder-gray-600 resize-none"></textarea>
                 </div>
+                @if (description.hasError('minlength')) {
+                    <p class="text-red-500 text-xs mt-2">Track name must be at least 20 characters.</p>
+                }
+
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 

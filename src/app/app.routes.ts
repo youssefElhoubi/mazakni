@@ -3,15 +3,15 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
     {
         path:"",
-        loadComponent:()=> import("../app/home/home.component").then(m=>m.HomeComponent)
+        loadComponent:()=> import("./layouts/home/home.component").then(m=>m.HomeComponent)
     },
     {
         path:"music/:id",
-        loadComponent:()=> import("../app/music-player/music-player.component").then(m=>m.MusicPlayerComponent)
+        loadComponent:()=> import("./layouts/music-player/music-player.component").then(m=>m.MusicPlayerComponent)
     },
     {
         path:"upload",
-        loadComponent:()=> import("../app/upload/upload.component").then(m=>m.UploadComponent)
+        loadComponent:()=> import("./layouts/upload/upload.component").then(m=>m.UploadComponent)
     },
     {
         path:"**",
