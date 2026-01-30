@@ -51,8 +51,7 @@
                                 <i
                                     class="fa fa-image text-2xl text-gray-500 mb-2 group-hover:text-brand-cyan transition-colors"></i>
                                 <p class="text-xs text-gray-400" *ngIf="!selectedImage">Click to Upload</p>
-                                <p class="text-xs text-brand-cyan truncate px-2" *ngIf="selectedImage">{{
-                                    selectedImage.name }}</p>
+                                <p class="text-xs text-brand-cyan truncate px-2" *ngIf="selectedImage">{{ selectedImage()?.name }}</p>
                             </div>
                         </div>
                     </div>
@@ -69,8 +68,7 @@
                                 <i
                                     class="fa fa-music text-2xl text-gray-500 mb-2 group-hover:text-brand-cyan transition-colors"></i>
                                 <p class="text-xs text-gray-400" *ngIf="!selectedAudio">Click to Upload</p>
-                                <p class="text-xs text-brand-cyan truncate px-2" *ngIf="selectedAudio">{{
-                                    selectedAudio.name }}</p>
+                                <p class="text-xs text-brand-cyan truncate px-2" *ngIf="selectedAudio">{{ selectedAudio()?.name }}</p>
                             </div>
                         </div>
                     </div>
