@@ -26,7 +26,7 @@ export class UploadComponent {
   onImageSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
-      this.selectedImage = file;
+      this.selectedImage.set(file);
 
       // Create preview
       const reader = new FileReader();
@@ -39,13 +39,13 @@ export class UploadComponent {
   onAudioSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
-      this.selectedAudio = file;
+      this.selectedAudio.set(file);
     }
   }
 
   onSubmit() {
-    console.log(this.selectedAudio);
-    console.log(this.selectedImage);
+    console.log(this.selectedAudio());
+    console.log(this.selectedImage());
 
     
     if (this.musicData.name && this.selectedAudio()) {
