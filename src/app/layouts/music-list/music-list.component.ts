@@ -11,18 +11,12 @@ import { MusicServiceService } from '../../core/music-service.service';
   styles: []
 })
 export class MusicListComponent {
-  music = signal<MusicType[]>([]);
+  music = this.musicService.musicList;
 
   constructor(private musicService: MusicServiceService) { }
 
   ngOnInit(): void {
-    this.musicService.getMusicList().subscribe({
-      next: (data) => {
-        this.music.set(data);
-        console.log(data);
-      },
-      error: (e) => console.log("there is some error", e)
-    })
+    this.musicService.loadMusic();
   }
 
   playTrack(track: any) {
