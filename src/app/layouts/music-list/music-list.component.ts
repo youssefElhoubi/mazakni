@@ -2,6 +2,7 @@ import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MusicType } from '../../types/MusicType';
 import { MusicServiceService } from '../../core/music-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-music-list',
@@ -13,13 +14,13 @@ import { MusicServiceService } from '../../core/music-service.service';
 export class MusicListComponent {
   music = this.musicService.musicList;
 
-  constructor(private musicService: MusicServiceService) { }
+  constructor(private musicService: MusicServiceService, private routes: Router) { }
 
   ngOnInit(): void {
     this.musicService.loadMusic();
   }
 
   playTrack(track: any) {
-    console.log('Playing:', track.title);
+    this.routes.navigate(['/music/', track.id]);
   }
 }
