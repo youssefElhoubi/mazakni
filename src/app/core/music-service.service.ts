@@ -26,7 +26,6 @@ export class MusicServiceService {
       next: (data) => {
         // 3. Update the Service's signal
         this.musicList.set(data);
-        console.log(this.musicList());
         
         this.isLoaded = true; // Mark as loaded
       },

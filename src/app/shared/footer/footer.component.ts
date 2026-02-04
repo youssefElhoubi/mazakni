@@ -1,5 +1,6 @@
-import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, computed } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Import CommonModule for ngClass/ngStyle
+import { MusicServiceService } from '../../core/music-service.service';
 
 @Component({
   selector: 'app-footer',
@@ -9,7 +10,9 @@ import { CommonModule } from '@angular/common'; // Import CommonModule for ngCla
   styleUrl: './footer.component.css'
 })
 export class FooterComponent implements AfterViewInit {
-  // Access the <audio> element from the HTML
+
+  constructor(private musicService: MusicServiceService) { }
+  
   @ViewChild('audioPlayer') audioPlayerRef!: ElementRef<HTMLAudioElement>;
 
   // State variables
@@ -17,15 +20,24 @@ export class FooterComponent implements AfterViewInit {
   currentTime = 0;
   duration = 0;
   progress = 0;
-  volume = 1; // 0 to 1
+  volume = 1;
 
-  currentMusic = {
-    title: "New Year Dubstep",
-    artist: "Rofa Music Store",
-    img: "https://via.placeholder.com/56",
-    // Added a URL for the audio source
-    url: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/9473/new_year_dubstep_minimix.ogg"
-  };
+  // FIX 1: Remove the parentheses (). 
+  // Now 'music' is a Signal (a live connection), not a static array.
+  music = this.musicService.musicList;
+
+  // FIX 2: Use 'computed' for derived state.
+  // This says: "Whenever 'music' changes, automatically grab the first track."
+  currentMusic = computed(() => {
+    const list = this.music();
+    return list.length > 0 ? list[0] : null;
+  });
+
+  ngOnInit(): void {
+    // This triggers the fetch. 
+    // When data arrives, 'music' updates -> 'currentMusic' updates automatically.
+    this.musicService.loadMusic();
+  }
 
   ngAfterViewInit() {
     // Set initial volume
@@ -34,7 +46,7 @@ export class FooterComponent implements AfterViewInit {
 
   togglePlay() {
     const audio = this.audioPlayerRef.nativeElement;
-    
+
     if (audio.paused) {
       audio.play();
       this.isPlaying = true;
@@ -48,7 +60,7 @@ export class FooterComponent implements AfterViewInit {
   onTimeUpdate() {
     const audio = this.audioPlayerRef.nativeElement;
     this.currentTime = audio.currentTime;
-    
+
     // Avoid division by zero
     if (audio.duration) {
       this.progress = (audio.currentTime / audio.duration) * 100;
@@ -66,10 +78,10 @@ export class FooterComponent implements AfterViewInit {
     const rect = progressBar.getBoundingClientRect();
     const clickX = event.clientX - rect.left;
     const width = rect.width;
-    
+
     const percentage = clickX / width;
     const audio = this.audioPlayerRef.nativeElement;
-    
+
     audio.currentTime = percentage * audio.duration;
   }
 
@@ -79,11 +91,11 @@ export class FooterComponent implements AfterViewInit {
     const rect = volumeBar.getBoundingClientRect();
     const clickX = event.clientX - rect.left;
     const width = rect.width;
-    
+
     let newVolume = clickX / width;
     // Clamp between 0 and 1
     newVolume = Math.max(0, Math.min(1, newVolume));
-    
+
     this.audioPlayerRef.nativeElement.volume = newVolume;
     this.volume = newVolume;
   }
@@ -91,7 +103,7 @@ export class FooterComponent implements AfterViewInit {
   // Helper to format seconds into MM:SS
   formatTime(time: number): string {
     if (isNaN(time)) return '0:00';
-    
+
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
