@@ -7,7 +7,7 @@ import { MusicType } from '../types/MusicType';
   providedIn: 'root'
 })
 export class MusicServiceService {
-  private apiUrl: string = "http://localhost:8080/api/music/";
+  private apiUrl: string = "http://localhost:8080/api/music";
 
   // 1. Create the Signal HERE. This is your "State".
   // Initialize with empty array
@@ -22,7 +22,7 @@ export class MusicServiceService {
     // 2. Check if we already have data to avoid re-fetching
     if (this.isLoaded) return; 
 
-    this.http.get<MusicType[]>(this.apiUrl + "all").subscribe({
+    this.http.get<MusicType[]>(this.apiUrl + "/all").subscribe({
       next: (data) => {
         // 3. Update the Service's signal
         this.musicList.set(data);
